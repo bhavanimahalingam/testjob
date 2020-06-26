@@ -12,7 +12,7 @@ node{
    }
    stage('Deploy to Tomcat'){
       sshagent(['jenkins_cat']){
-      sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@3.87.2.89:/home/ec2-user/apache-tomcat-9.0.36/webapps/'
+      sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@35.174.208.62:/home/ec2-user/apache-tomcat-7.0.104/webapps/'
       }
   }
     stage('Email Notification'){
