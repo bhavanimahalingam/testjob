@@ -11,7 +11,7 @@ node{
     }
    }
    stage('Test'){
-      sh "mvn test"
+      sh "mvn test -f testjob"
    }
    stage('Deploy to Tomcat'){
       sshagent(['jenkinstom']){
