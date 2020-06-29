@@ -13,7 +13,7 @@ node{
    stage('Test'){
       def mvn_home = 'maven'
     withEnv( ["PATH+MAVEN=${tool mvn_home}/bin"] ) {
-      sh "mvn test -f testjob"
+      sh "mvn test"
     }
    }
    stage('Deploy to Tomcat'){
