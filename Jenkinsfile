@@ -22,7 +22,7 @@ node{
       }
   }
     stage('Deploy to airflow'){
-     sshagent(['airflow_tom']) {
+     sshagent(['jenkins_cat']) {
       sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/bavani_pipeline/*.py  ec2-user@52.5.254.171:/home/ec2-user/airflow/dags/'
       sh "pwd"
       sh "whoami"
