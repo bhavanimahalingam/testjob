@@ -24,7 +24,13 @@ node{
       sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@3.95.10.198:/home/ec2-user/apache-tomcat-9.0.36/webapps/'
       }
   }
-  
+   stage('Roll Back'){
+        when{
+            expression {
+              !("SUCCESS".equals(currentBuild.previousBuild.result))
+            }
+        }
+   }
    
 
     stage('Deploy to airflow'){
