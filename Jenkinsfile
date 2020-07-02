@@ -18,15 +18,15 @@ node{
    }
    stage('Deploy to Tomcat'){
       sshagent(['jenkins_cat']) {
-      sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@52.5.254.171:/home/ec2-user/apache-tomcat-9.0.36/webapps/'
+      sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@3.95.10.198:/home/ec2-user/apache-tomcat-9.0.36/webapps/'
       }
   }
     stage('Deploy to airflow'){
      sshagent(['jenkins_cat']) {
-      sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/bavani_pipeline/*.py  ec2-user@52.5.254.171:/home/ec2-user/airflow/dags/'
+      sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/bavani_pipeline/*.py  ec2-user@3.95.10.198:/home/ec2-user/airflow/dags/'
       sh "pwd"
       sh "whoami"
-     dir("/home/ec2-user/airflow/"){
+     dir('/home/ec2-user/airflow/'){
       sh 'airflow webserver -p 8080 & airflow scheduler && fg'
       sh 'pwd'
     }
