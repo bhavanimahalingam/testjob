@@ -4,7 +4,7 @@ node{
  
    stage('SCM Checkout'){
      git 'https://github.com/bhavanimahalingam/testjob'
-     echo "current build number: ${currentBuild.number}"
+     echo "${currentBuild.number}"
    }
    stage('Compile-Package'){
       // Get maven home path
