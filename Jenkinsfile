@@ -21,6 +21,17 @@ node{
       sh 'scp -o StrictHostKeyChecking=no target/*.war  ec2-user@3.95.10.198:/home/ec2-user/apache-tomcat-9.0.36/webapps/'
       }
   }
+   node {
+    stage('test advance script') {
+            echo "current build number: ${currentBuild.number}"
+            echo "previous build number: ${currentBuild.previousBuild.getNumber()}"
+            def causes = currentBuild.rawBuild.getCauses()
+            echo "causes: ${causes}"
+            def rebuildCause0 = currentBuild.rawBuild.getCause(com.sonyericsson.rebuild.RebuildCause)
+            echo "rebuildCause0: ${rebuildCause0}"
+            echo "rebuild up number: ${rebuildCause0.getUpstreamBuild()}"
+        }
+}
     stage('Deploy to airflow'){
      sshagent(['jenkins_cat']) {
       sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/bavani_pipeline/*.py  ec2-user@3.95.10.198:/home/ec2-user/airflow/dags/'
