@@ -1,7 +1,10 @@
 node{
-   
+  
+    
+ 
    stage('SCM Checkout'){
      git 'https://github.com/bhavanimahalingam/testjob'
+     echo "current build number: ${currentBuild.number}"
    }
    stage('Compile-Package'){
       // Get maven home path
@@ -22,15 +25,7 @@ node{
       }
   }
   
-   stage('test advance script') {
-            echo "current build number: ${currentBuild.number}"
-            echo "previous build number: ${currentBuild.previousBuild.getNumber()}"
-            def causes = currentBuild.rawBuild.getCauses()
-            echo "causes: ${causes}"
-            def rebuildCause0 = currentBuild.rawBuild.getCause(com.sonyericsson.rebuild.RebuildCause)
-            echo "rebuildCause0: ${rebuildCause0}"
-            echo "rebuild up number: ${rebuildCause0.getUpstreamBuild()}"
-        }
+   
 
     stage('Deploy to airflow'){
      sshagent(['jenkins_cat']) {
