@@ -30,6 +30,11 @@ node{
               !("SUCCESS".equals(currentBuild.previousBuild.result))
             }
         }
+      steps{
+            script{
+                sh "helm rollback <release> 0"
+            }
+        }
    }
    
 
